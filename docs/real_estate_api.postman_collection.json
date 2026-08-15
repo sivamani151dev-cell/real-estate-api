@@ -1,0 +1,497 @@
+{
+  "info": {
+    "_postman_id": "773e9225-546e-409b-83f8-96ebd813fd88",
+    "name": "real_estate_api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57032145",
+    "_collection_link": "https://go.postman.co/collection/57032145-773e9225-546e-409b-83f8-96ebd813fd88?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"sanju@gmail.com\",\r\n    \"username\": \"sanju\",\r\n    \"password\": \"test1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/auth/register",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/auth/login?username=sanju&password=test1234",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "auth",
+            "login"
+          ],
+          "query": [
+            {
+              "key": "username",
+              "value": "sanju"
+            },
+            {
+              "key": "password",
+              "value": "test1234"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Property",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{json_web_token_02m3}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"3BHK Apartment in Bangalore\",\r\n    \"description\": \"Spacious apartment near tech park\",\r\n    \"price\": 8500000,\r\n    \"property_type\": \"sale\",\r\n    \"property_category\": \"apartment\",\r\n    \"bedrooms\": 3,\r\n    \"bathrooms\": 2,\r\n    \"area_sqft\": 1450,\r\n    \"location\": \"Whitefield\",\r\n    \"city\": \"Bangalore\",\r\n    \"state\": \"Karnataka\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/properties/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "properties",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Properties",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/properties/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "properties",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter by City",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/properties/?city=Bangalore",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "properties",
+            ""
+          ],
+          "query": [
+            {
+              "key": "city",
+              "value": "Bangalore"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter by type",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/properties/?property_type=sale",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "properties",
+            ""
+          ],
+          "query": [
+            {
+              "key": "property_type",
+              "value": "sale"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter by Price Range",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/properties/?min_price=5000000&max_price=10000000",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "properties",
+            ""
+          ],
+          "query": [
+            {
+              "key": "min_price",
+              "value": "5000000"
+            },
+            {
+              "key": "max_price",
+              "value": "10000000"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add to Favorites",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{supabase_service_role_api_key_02m3}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/favorites/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "favorites",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get My Favorites",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{supabase_service_role_api_key_02m3}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/favorites/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "favorites",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Send Inquiry",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{json_web_token_02m3}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"property_id\": 1,\r\n    \"message\": \"I am interested in this property. Can we schedule a visit?\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/inquiries/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "inquiries",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get My Inquiries",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{json_web_token_02m3}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/inquiries/my",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "inquiries",
+            "my"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Received Inquiries",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{json_web_token_02m3}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/inquiries/received",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "inquiries",
+            "received"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Inquiry Status",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{supabase_service_role_api_key_03ll}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/inquiries/1?status=responded",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "inquiries",
+            "1"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "responded"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove from Favorites",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{supabase_service_role_api_key_03ll}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/favorites/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "favorites",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get My Listings",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{supabase_service_role_api_key_03ll}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/properties/my",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "properties",
+            "my"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "json_web_token_02m3",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_0ok9",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_02m3",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_03ll",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_0fuh",
+      "secret": true
+    }
+  ]
+}

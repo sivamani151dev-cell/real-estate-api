@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from app.database import engine, Base
+from app.models.image import Image
 from app.routers import auth, properties, favorites, inquiries
 import logging
 

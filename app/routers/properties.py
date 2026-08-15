@@ -27,7 +27,7 @@ def create_property(property: PropertyCreate, db: Session = Depends(get_db), cur
     new_property = Property(
         title=property.title,
         description=property.description,
-        price=property.price,
+        price = property.price,
         property_type=property.property_type,
         property_category=property.property_category,
         bedrooms=property.bedrooms,
@@ -63,9 +63,9 @@ def get_properties(
         query = query.filter(Property.property_type == property_type)
     if property_category:
         query = query.filter(Property.property_category == property_category)
-    if min_price:
+    if min_price is not None:
         query = query.filter(Property.price >= min_price)
-    if max_price:
+    if max_price is not None:
         query = query.filter(Property.price <= max_price)
     if min_bedrooms:
         query = query.filter(Property.bedrooms >= min_bedrooms)
@@ -92,8 +92,10 @@ def update_property(property_id: int, update: PropertyUpdate, db: Session = Depe
         property.title = update.title
     if update.description is not None:
         property.description = update.description
-    if update.price is not None:
-        property.price = update.price
+    if update.min_price is not None:
+        property.min_price = update.min_price
+    if update.max_price is not None:
+        property.max_price = update.max_price
     if update.bedrooms is not None:
         property.bedrooms = update.bedrooms
     if update.bathrooms is not None:

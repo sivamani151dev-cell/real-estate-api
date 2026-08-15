@@ -34,5 +34,5 @@ class Property(Base):
     owner_id = Column(Integer, ForeignKey("users.id"))
 
     images = relationship("Image", backref="property")
-    favorites = relationship("Favorite", backref="property")
+    favorites = relationship("Favorite", backref="saved_by_users")
     inquiries = relationship("Inquiry", backref="property")
