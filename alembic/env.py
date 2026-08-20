@@ -10,8 +10,9 @@ config = context.config
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
-db_url = os.getenv("DATABASE_URL")
+if os.path.exists(".env"):
+    load_dotenv()
+db_url = os.environ.get("DATABASE_URL")
 
 db_url = db_url.replace("%", "%%")
 config.set_main_option("sqlalchemy.url", db_url)
